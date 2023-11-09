@@ -1,6 +1,6 @@
-# quick-commit README
+# quick-git README
 
-This is the README for your extension "quick-commit". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "quick-git". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
