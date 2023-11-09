@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
       // Dispose the terminal after a delay
       setTimeout(() => {
         terminal.dispose();
-      }, 3000);
+      }, 4000);
     })
   );
 }
