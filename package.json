@@ -12,7 +12,11 @@
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
-  "icon": "",
+  "icon": "./icon/logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/esteban-cz/Quick-Git"
+  },
   "contributes": {
     "menus": {
       "editor/title": [
