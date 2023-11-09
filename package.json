@@ -3,7 +3,7 @@
   "displayName": "Quick Git",
   "description": "Quick Git will quickly add, commit and push your project to git with simple commit message ",
   "version": "1.0.0",
-  "publisher": "esteban-cz",
+  "publisher": "esty",
   "engines": {
     "vscode": "^1.84.0"
   },
