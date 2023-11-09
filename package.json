@@ -2,7 +2,7 @@
   "name": "quick-git",
   "displayName": "Quick Git",
   "description": "Quick Git will quickly add, commit and push your project to git with simple commit message ",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "esty",
   "engines": {
     "vscode": "^1.84.0"
@@ -21,18 +21,29 @@
     "menus": {
       "editor/title": [
         {
-          "command": "btnPressed.Commit&Push",
+          "command": "quickGit.btnPressed",
           "group": "navigation"
         }
       ]
     },
     "commands": [
       {
-        "command": "btnPressed.Commit&Push",
+        "command": "quickGit.btnPressed",
         "title": "Commit and push",
         "icon": "$(git-commit)"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Quick Git",
+      "properties": {
+        "quickGit.commitMessage": {
+          "type": "string",
+          "default": "new",
+          "description": "The default commit message"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
