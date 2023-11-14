@@ -16,6 +16,10 @@ Added config, you can now change default commit message :)
 
 Fixed timing on closing the terminal too soon ;)
 
+### 2.0.0
+
+Added Pull, Push, Commit and Commit & Push buttons, main Pull and Commit & Push btns are in the top right and the rest are in the bottom left in the status bar.
+
 ---
 
 **Enjoy!**
