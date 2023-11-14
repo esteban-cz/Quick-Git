@@ -12,10 +12,10 @@ Initial release of "quick-git"
 
 Added config, you can now change default commit message :)
 
-<!-- ### 1.0.2
+### 1.0.2
 
-Added features X, Y, and Z.
+Fixed timing on closing the terminal too soon ;)
 
---- -->
+---
 
 **Enjoy!**
