@@ -1,27 +1,26 @@
 import * as vscode from "vscode";
 
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export function activate(context: vscode.ExtensionContext) {
-  // Register the command
   context.subscriptions.push(
-    vscode.commands.registerCommand("quickGit.btnPressed", () => {
-      // Get the configured commit message
+    vscode.commands.registerCommand("quickGit.btnPressed", async () => {
       const commitMessage =
         vscode.workspace
           .getConfiguration()
           .get("quickGit.commitMessage") || "new";
 
-      // Open the terminal
       const terminal = vscode.window.createTerminal("Quick Git Terminal");
 
-      // Git Add, Commit, Push
       terminal.sendText(
         `git add . ; git commit -m "${commitMessage}" ; git push`
       );
 
-      // Dispose the terminal after a delay
-      setTimeout(() => {
-        terminal.dispose();
-      }, 4000);
+      await delay(10000);
+
+      terminal.dispose();
     })
   );
 }
