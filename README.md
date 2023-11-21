@@ -20,6 +20,10 @@ Fixed timing on closing the terminal too soon ;)
 
 Added Pull, Push, Commit and Commit & Push buttons, main Pull and Commit & Push btns are in the top right and the rest are in the bottom left in the status bar.
 
+### 2.0.1
+
+Small changes and fixes.
+
 ---
 
 **Enjoy!**

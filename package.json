@@ -2,7 +2,7 @@
   "name": "quick-git",
   "displayName": "Quick Git",
   "description": "Quick Git will quickly add, commit and push your project to git with simple commit message ",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "publisher": "esty",
   "engines": {
     "vscode": "^1.84.0"
@@ -11,7 +11,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.showGitMenu"
+    "onCommand:quickGit.showGitMenu",
+    "quickGit.showGitMenu"
   ],
   "main": "./out/extension.js",
   "icon": "icon/logo.png",
@@ -23,24 +24,24 @@
     "menus": {
       "editor/title": [
         {
-          "command": "quickGit.btnPull",
+          "command": "quickGit.Pull",
           "group": "navigation"
         },
         {
-          "command": "quickGit.btnCommit&Push",
+          "command": "quickGit.Commit&Push",
           "group": "navigation"
         }
       ]
     },
     "commands": [
       {
-        "command": "quickGit.btnPull",
-        "title": "Pull",
+        "command": "quickGit.Pull",
+        "title": "Git: Pull",
         "icon": "$(git-fetch)"
       },
       {
-        "command": "quickGit.btnCommit&Push",
-        "title": "Commit and Push",
+        "command": "quickGit.Commit&Push",
+        "title": "Git: Commit and Push",
         "icon": "$(git-commit)"
       }
     ],  
@@ -50,7 +51,7 @@
       "properties": {
         "quickGit.commitMessage": {
           "type": "string",
-          "default": "new",
+          "default": "New",
           "description": "The default commit message"
         }
       }
