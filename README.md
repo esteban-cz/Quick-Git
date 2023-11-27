@@ -24,6 +24,10 @@ Added Pull, Push, Commit and Commit & Push buttons, main Pull and Commit & Push 
 
 Small changes and fixes.
 
+### 3.0.0
+
+Big changes, added custom commit message, fixed status bar icon not appearing on load, new extension settings, again fixed timings and made custom logo for Quick Git.
+
 ---
 
 **Enjoy!**

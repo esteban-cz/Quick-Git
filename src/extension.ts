@@ -1,5 +1,7 @@
 import * as vscode from "vscode";
 
+let StatusBar: vscode.StatusBarItem;
+
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -10,61 +12,122 @@ function executeGitCommand(command: string) {
   return terminal;
 }
 
-export function activate(context: vscode.ExtensionContext) {
+function updateStatusBarItem(): void {
+	StatusBar.text = "$(git-fetch) $(arrow-up) $(check) $(git-commit)";
+	StatusBar.tooltip = "Git Actions";
+  StatusBar.show();
+}
 
+export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand("quickGit.Pull", async () => {
-      vscode.window.showInformationMessage("Pull command executed.");
-      const terminal = executeGitCommand("git pull");
-      await delay(20000);
-      terminal.dispose();
+      try {
+        vscode.window.showInformationMessage(`Pull command executed.`, "Ok");
+        const terminal = executeGitCommand("git pull");
+        await delay(20000);
+        terminal.dispose();
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error occurred while executing Pull command: ${error}`);
+      }
     })
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand("quickGit.Commit&Push", async () => {
-      vscode.window.showInformationMessage("Commit and Push command executed.");
-      const commitMessage =
-        vscode.workspace.getConfiguration().get("quickGit.commitMessage") ||
-        "new";
-      const terminal = executeGitCommand(
-        `git add . ; git commit -m "${commitMessage}" ; git push`
-      );
-      await delay(20000);
-      terminal.dispose();
+      const commitMessageOption = vscode.workspace
+        .getConfiguration()
+        .get("quickGit.commitMessageOption", "Default");
+
+      let commitMessage = "";
+
+      if (commitMessageOption === "Default") {
+        commitMessage =
+          vscode.workspace
+            .getConfiguration()
+            .get("quickGit.defaultCommitMessage") || "New";
+      } else {
+        const input = await vscode.window.showInputBox({
+          placeHolder: "Enter custom commit message",
+          prompt: "Custom commit message",
+        });
+        if (input) {
+          commitMessage = input;
+        } else {
+          return;
+        }
+      }
+      try {
+        vscode.window.showInformationMessage(
+          `Commit and Push command executed with the message ${commitMessage}.`,
+          "Ok"
+        );
+        const terminal = executeGitCommand(
+          `git add . ; git commit -m "${commitMessage}" ; git push`
+        );
+        await delay(20000);
+        terminal.dispose();
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error occurred while executing Commit and Push command: ${error}`);
+      }
     })
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand("quickGit.Push", async () => {
-      vscode.window.showInformationMessage("Push command executed.");
-      const terminal = executeGitCommand("git push");
-      await delay(20000);
-      terminal.dispose();
+      try {
+        vscode.window.showInformationMessage(`Push command executed.`, "Ok");
+        const terminal = executeGitCommand("git push");
+        await delay(20000);
+        terminal.dispose();
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error occurred while executing Push command: ${error}`);
+      }
     })
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand("quickGit.Commit", async () => {
-      vscode.window.showInformationMessage("Commit command executed.");
-      const commitMessage =
-        vscode.workspace
-          .getConfiguration()
-          .get("quickGit.commitMessage") || "new";
-      const terminal = executeGitCommand(`git add . ; git commit -m "${commitMessage}"`);
-      await delay(20000);
-      terminal.dispose();
+      const commitMessageOption = vscode.workspace
+        .getConfiguration()
+        .get("quickGit.commitMessageOption", "Default");
+
+      let commitMessage = "";
+
+      if (commitMessageOption === "Default") {
+        commitMessage =
+          vscode.workspace
+            .getConfiguration()
+            .get("quickGit.defaultCommitMessage") || "New";
+      } else {
+        const input = await vscode.window.showInputBox({
+          placeHolder: "Enter custom commit message",
+          prompt: "Custom commit message",
+        });
+        if (input) {
+          commitMessage = input;
+        } else {
+          return;
+        }
+      }
+      try {
+        vscode.window.showInformationMessage(
+          `Commit command executed with the message ${commitMessage}.`,
+          "Ok"
+        );
+        const terminal = executeGitCommand(
+          `git add . ; git commit -m "${commitMessage}"`
+        );
+        await delay(20000);
+        terminal.dispose();
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error occurred while executing Commit command: ${error}`);
+      }
     })
   );
 
-  const customStatusBar = vscode.window.createStatusBarItem(
-    vscode.StatusBarAlignment.Left,
-    100
-  );
-  customStatusBar.text = "$(git-fetch) $(arrow-up) $(check) $(git-commit)";
-  customStatusBar.tooltip = "Git Actions";
-  customStatusBar.command = "quickGit.showGitMenu";
-  customStatusBar.show();
+  StatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10000);
+  StatusBar.command = "quickGit.showGitMenu";
+  context.subscriptions.push(StatusBar);
 
   context.subscriptions.push(
     vscode.commands.registerCommand("quickGit.showGitMenu", async () => {
@@ -74,7 +137,6 @@ export function activate(context: vscode.ExtensionContext) {
           placeHolder: "Select a Git action:",
         }
       );
-
       switch (choice) {
         case "Pull":
           vscode.commands.executeCommand("quickGit.Pull");
@@ -90,9 +152,10 @@ export function activate(context: vscode.ExtensionContext) {
           break;
         default:
           break;
-      };
+      }
     })
   );
-};
+  updateStatusBarItem();
+}
 
 export function deactivate() {}

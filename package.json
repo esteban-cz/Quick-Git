@@ -1,8 +1,8 @@
 {
   "name": "quick-git",
   "displayName": "Quick Git",
-  "description": "Quick Git will quickly add, commit and push your project to git with simple commit message ",
-  "version": "2.0.1",
+  "description": "Quick Git will quickly add, commit and push your project to git with simple commit message that you can easily customize.",
+  "version": "3.0.0",
   "publisher": "esty",
   "engines": {
     "vscode": "^1.84.0"
@@ -11,11 +11,10 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:quickGit.showGitMenu",
-    "quickGit.showGitMenu"
+    "*"
   ],
   "main": "./out/extension.js",
-  "icon": "icon/logo.png",
+  "icon": "icon/Quick-Git-logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/esteban-cz/Quick-Git"
@@ -41,7 +40,7 @@
       },
       {
         "command": "quickGit.Commit&Push",
-        "title": "Git: Commit and Push",
+        "title": "Git: Commit & Push",
         "icon": "$(git-commit)"
       }
     ],  
@@ -49,10 +48,19 @@
       "type": "object",
       "title": "Quick Git",
       "properties": {
-        "quickGit.commitMessage": {
-          "type": "string",
-          "default": "New",
-          "description": "The default commit message"
+        "quickGit.commitMessageOption": {
+            "type": "string",
+            "enum": [
+                "Default",
+                "Custom"
+            ],
+            "default": "Default",
+            "description": "Choose between Default or Custom commit message (if set to Default, the commit message will be your Default Commit Message that you set, if set to custom, you will be prompted each time you commit to write a message to commit with.)"
+        },
+        "quickGit.defaultCommitMessage": {
+            "type": "string",
+            "default": "New",
+            "description": "Default commit message"
         }
       }
     }
