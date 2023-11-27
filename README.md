@@ -1,3 +1,23 @@
+<div align="center">
+<table>
+<tbody>
+<td align="center">
+<img width="0" height="0"><br>
+<sub>
+  
+  [![MIT License](https://img.shields.io/badge/License-MIT-red.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)&nbsp;&nbsp;&nbsp;
+  ![Maintenance](https://img.shields.io/maintenance/yes/2023?style=for-the-badge)&nbsp;&nbsp;&nbsp;
+  ![GitHub last commit](https://img.shields.io/github/last-commit/esteban-cz/Quick-Git?style=for-the-badge)&nbsp;&nbsp;&nbsp;
+  
+</sub><br>
+<img width="0" height="0">
+</td>
+</tbody>
+</table>
+</div>
+  
+<br>
+
 # Features
 
 Quick Git will save you time when you're in hurry and need to quickly commit and push to git. Just press one button and done. It will automatically commit and push to git with the commit message "new"
