@@ -22,13 +22,31 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand("quickGit.Clone", async () => {
       try {
-        vscode.window.showInformationMessage(`Clone command executed.`, "Ok");
-        const input = await vscode.window.showInputBox({
-          placeHolder: "Enter git repo url:",
-          prompt: "Git repo url",
+        const repoUrl = await vscode.window.showInputBox({
+          placeHolder: "Enter git repo URL:",
+          prompt: "Git repo URL",
         });
-        const terminal = executeGitCommand(`git clone ${input}`);
-        await delay(20000);
+        
+        if (!repoUrl) {
+          return;
+        }
+  
+        const selectedFolder = await vscode.window.showOpenDialog({
+          canSelectFiles: false,
+          canSelectFolders: true,
+          openLabel: "Clone here",
+        });
+  
+        if (!selectedFolder || selectedFolder.length === 0) {
+          return;
+        }
+  
+        const cloneDestination = selectedFolder[0].fsPath;
+  
+        vscode.window.showInformationMessage(`Cloning repository from ${repoUrl} to ${cloneDestination}`, "Ok");
+  
+        const terminal = executeGitCommand(`cd  "${cloneDestination}" ; git clone ${repoUrl}`);
+        await delay(100000);
         terminal.dispose();
       } catch (error) {
         vscode.window.showErrorMessage(`Error occurred while executing Clone command: ${error}`);
