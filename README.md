@@ -48,6 +48,10 @@ Small changes and fixes.
 
 Big changes, added custom commit message, fixed status bar icon not appearing on load, new extension settings, again fixed timings and made custom logo for Quick Git.
 
+### 3.0.1
+
+Added git clone to the Git Actions menu in the status bar, you can customize the directory the repo will clone to and more features coming soon...
+
 ---
 
 **Enjoy!**
