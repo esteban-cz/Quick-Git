@@ -13,12 +13,29 @@ function executeGitCommand(command: string) {
 }
 
 function updateStatusBarItem(): void {
-	StatusBar.text = "$(git-fetch) $(arrow-up) $(check) $(git-commit)";
+	StatusBar.text = `$(git-pull-request) $(git-fetch) $(arrow-up) $(check) $(git-commit)`;
 	StatusBar.tooltip = "Git Actions";
   StatusBar.show();
 }
 
 export function activate(context: vscode.ExtensionContext) {
+  context.subscriptions.push(
+    vscode.commands.registerCommand("quickGit.Clone", async () => {
+      try {
+        vscode.window.showInformationMessage(`Clone command executed.`, "Ok");
+        const input = await vscode.window.showInputBox({
+          placeHolder: "Enter git repo url:",
+          prompt: "Git repo url",
+        });
+        const terminal = executeGitCommand(`git clone ${input}`);
+        await delay(20000);
+        terminal.dispose();
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error occurred while executing Clone command: ${error}`);
+      }
+    })
+  );
+
   context.subscriptions.push(
     vscode.commands.registerCommand("quickGit.Pull", async () => {
       try {
@@ -28,46 +45,6 @@ export function activate(context: vscode.ExtensionContext) {
         terminal.dispose();
       } catch (error) {
         vscode.window.showErrorMessage(`Error occurred while executing Pull command: ${error}`);
-      }
-    })
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand("quickGit.Commit&Push", async () => {
-      const commitMessageOption = vscode.workspace
-        .getConfiguration()
-        .get("quickGit.commitMessageOption", "Default");
-
-      let commitMessage = "";
-
-      if (commitMessageOption === "Default") {
-        commitMessage =
-          vscode.workspace
-            .getConfiguration()
-            .get("quickGit.defaultCommitMessage") || "New";
-      } else {
-        const input = await vscode.window.showInputBox({
-          placeHolder: "Enter custom commit message",
-          prompt: "Custom commit message",
-        });
-        if (input) {
-          commitMessage = input;
-        } else {
-          return;
-        }
-      }
-      try {
-        vscode.window.showInformationMessage(
-          `Commit and Push command executed with the message ${commitMessage}.`,
-          "Ok"
-        );
-        const terminal = executeGitCommand(
-          `git add . ; git commit -m "${commitMessage}" ; git push`
-        );
-        await delay(20000);
-        terminal.dispose();
-      } catch (error) {
-        vscode.window.showErrorMessage(`Error occurred while executing Commit and Push command: ${error}`);
       }
     })
   );
@@ -125,6 +102,46 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
+  context.subscriptions.push(
+    vscode.commands.registerCommand("quickGit.Commit&Push", async () => {
+      const commitMessageOption = vscode.workspace
+        .getConfiguration()
+        .get("quickGit.commitMessageOption", "Default");
+
+      let commitMessage = "";
+
+      if (commitMessageOption === "Default") {
+        commitMessage =
+          vscode.workspace
+            .getConfiguration()
+            .get("quickGit.defaultCommitMessage") || "New";
+      } else {
+        const input = await vscode.window.showInputBox({
+          placeHolder: "Enter custom commit message",
+          prompt: "Custom commit message",
+        });
+        if (input) {
+          commitMessage = input;
+        } else {
+          return;
+        }
+      }
+      try {
+        vscode.window.showInformationMessage(
+          `Commit and Push command executed with the message ${commitMessage}.`,
+          "Ok"
+        );
+        const terminal = executeGitCommand(
+          `git add . ; git commit -m "${commitMessage}" ; git push`
+        );
+        await delay(20000);
+        terminal.dispose();
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error occurred while executing Commit and Push command: ${error}`);
+      }
+    })
+  );
+
   StatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10000);
   StatusBar.command = "quickGit.showGitMenu";
   context.subscriptions.push(StatusBar);
@@ -132,12 +149,15 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand("quickGit.showGitMenu", async () => {
       const choice = await vscode.window.showQuickPick(
-        ["Pull", "Push", "Commit", "Commit and Push"],
+        ["Clone", "Pull", "Push", "Commit", "Commit and Push"],
         {
           placeHolder: "Select a Git action:",
         }
       );
       switch (choice) {
+        case "Clone":
+          vscode.commands.executeCommand("quickGit.Clone");
+          break;
         case "Pull":
           vscode.commands.executeCommand("quickGit.Pull");
           break;
