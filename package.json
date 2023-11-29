@@ -2,7 +2,7 @@
   "name": "quick-git",
   "displayName": "Quick Git",
   "description": "Quick Git will quickly add, commit and push your project to git with simple commit message that you can easily customize.",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "publisher": "esty",
   "engines": {
     "vscode": "^1.84.0"

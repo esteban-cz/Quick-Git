@@ -55,7 +55,11 @@ Added git clone to the Git Actions menu in the status bar, you can customize the
 
 ### 3.0.2
 
-Updated Git clone action, now if you do not have any folder opened you have in the bottom left corner the option to clone git repo, after any folder/file is opened this will change to Git actions.
+Updated Git clone action, now if you do not have any folder opened you have in the bottom left corner the option to clone git repo, after any folder/file is opened this will change to Git actions
+
+### 3.0.3
+
+Just updated CHANGELOG.md to be more detailed (added commits and dates to all version updates)
 
 ---
 
