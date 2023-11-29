@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 
 let StatusBar: vscode.StatusBarItem;
+let StatusBarClone: vscode.StatusBarItem;
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -16,6 +17,12 @@ function updateStatusBarItem(): void {
 	StatusBar.text = `$(git-pull-request) $(git-fetch) $(arrow-up) $(check) $(git-commit)`;
 	StatusBar.tooltip = "Git Actions";
   StatusBar.show();
+}
+
+function updateStatusBarClone(): void {
+	StatusBarClone.text = `$(git-pull-request) Clone git`;
+	StatusBarClone.tooltip = "Git Clone";
+  StatusBarClone.show();
 }
 
 export function activate(context: vscode.ExtensionContext) {
@@ -160,7 +167,7 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
-  StatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10000);
+  StatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10001);
   StatusBar.command = "quickGit.showGitMenu";
   context.subscriptions.push(StatusBar);
 
@@ -193,7 +200,32 @@ export function activate(context: vscode.ExtensionContext) {
       }
     })
   );
-  updateStatusBarItem();
+
+  StatusBarClone = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10000);
+  StatusBarClone.command = "quickGit.showGitClone";
+  context.subscriptions.push(StatusBarClone);
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("quickGit.showGitClone", async () => {
+        vscode.commands.executeCommand("quickGit.Clone");
+    }));
+
+  if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) {
+    updateStatusBarClone();
+  } else {
+    StatusBarClone.hide();
+    updateStatusBarItem();
+  }
+
+  vscode.workspace.onDidChangeWorkspaceFolders(() => {
+    if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) {
+      updateStatusBarClone();
+      StatusBar.hide();
+    } else {
+      StatusBarClone.hide();
+      updateStatusBarItem();
+    }
+  });
 }
 
 export function deactivate() {}

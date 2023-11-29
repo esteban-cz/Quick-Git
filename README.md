@@ -52,6 +52,10 @@ Big changes, added custom commit message, fixed status bar icon not appearing on
 
 Added git clone to the Git Actions menu in the status bar, you can customize the directory the repo will clone to and more features coming soon...
 
+### 3.0.2
+
+Updated Git clone action, now if you do not have any folder opened you have in the bottom left corner the option to clone git repo, after any folder/file is opened this will change to Git actions.
+
 ---
 
 **Enjoy!**
