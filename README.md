@@ -7,7 +7,7 @@
   
   [![MIT License](https://img.shields.io/badge/License-MIT-red.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)&nbsp;&nbsp;&nbsp;
   ![Maintenance](https://img.shields.io/maintenance/yes/2023?style=for-the-badge)&nbsp;&nbsp;&nbsp;
-  [![Extension Version](https://img.shields.io/github/package-json/v/esteban-cz/Quick-Git/master?style=for-the-badge&label=Version)&nbsp;&nbsp;&nbsp;](https://img.shields.io/github/package-json/v/esteban-cz/Quick-Git/master?style=for-the-badge&label=Version)&nbsp;&nbsp;&nbsp;
+  [![Extension Version](https://img.shields.io/github/package-json/v/esteban-cz/Quick-Git/master?style=for-the-badge&label=Version)&nbsp;&nbsp;&nbsp;]&nbsp;&nbsp;&nbsp;
   ![GitHub last commit](https://img.shields.io/github/last-commit/esteban-cz/Quick-Git?style=for-the-badge)
   
 </sub><br>
