@@ -70,6 +70,10 @@ Updated Git clone action, now if you do not have any folder opened you have in t
 
 Just updated CHANGELOG.md to be more detailed (added commits and dates to all version updates)
 
+### 3.0.4
+
+Just updated README.md to be more detailed and to have all the features.
+
 ---
 
 **Enjoy!**
