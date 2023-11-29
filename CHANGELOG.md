@@ -31,6 +31,10 @@
 ---
 ---
 # [788e20f] (29/11/2023) Version 3.0.3 update:
-- Just updated CHANGELOG.md to be more detailed (added commits and dates to all version updates)
+- Just updated CHANGELOG.md to be more detailed (added commits and dates to all version updates).
+---
+---
+# [] (29/11/2023) Version 3.0.4 update:
+- Just updated README.md to be more detailed and to have all the features.
 ---
 ---

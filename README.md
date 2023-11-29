@@ -21,7 +21,16 @@
 
 # Features
 
-Quick Git will save you time when you're in hurry and need to quickly commit and push to git. Just press one button and done. It will automatically commit and push to git with the commit message "new"
+Quick Git will save you time when you're in hurry and need to quickly commit and push to git. Just press one button and done. It will automatically commit and push to git with the commit message "New" (you can change the default commit message in extension settings) or you can use custom commit message and each time you commit it will ask you to write commit message.
+### All features:
+  - Git Clone
+  - Git Pull
+  - Git Push
+  - Git Commit
+  - Commit and Push
+
+---
+---
 
 ## Release Notes
 
