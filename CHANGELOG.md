@@ -30,7 +30,7 @@
 - Updated Git clone action, now if you do not have any folder opened you have in the bottom left corner the option to clone git repo, after any folder/file is opened this will change to Git actions.
 ---
 ---
-# [] (29/11/2023) Version 3.0.3 update:
+# [788e20f] (29/11/2023) Version 3.0.3 update:
 - Just updated CHANGELOG.md to be more detailed (added commits and dates to all version updates)
 ---
 ---
