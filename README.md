@@ -1,4 +1,4 @@
-<!-- <div align="center">
+<div align="center">
 <table>
 <tbody>
 <td align="center">
@@ -17,7 +17,7 @@
 </table>
 </div>
 
-<br> -->
+<br>
 
 # Features
 
