@@ -6,7 +6,7 @@
 <sub>
   
   [![MIT License](https://img.shields.io/badge/License-MIT-red.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)&nbsp;&nbsp;&nbsp;
-  ![Maintenance](https://img.shields.io/maintenance/yes/2023?style=for-the-badge)&nbsp;&nbsp;&nbsp;
+  ![Maintenance](https://img.shields.io/maintenance/yes/2025?style=for-the-badge)&nbsp;&nbsp;&nbsp;
   ![Extension Version](https://img.shields.io/github/package-json/v/esteban-cz/Quick-Git/master?style=for-the-badge&label=Version)&nbsp;&nbsp;&nbsp;
   ![GitHub last commit](https://img.shields.io/github/last-commit/esteban-cz/Quick-Git?style=for-the-badge)
   
@@ -73,6 +73,10 @@ Just updated CHANGELOG.md to be more detailed (added commits and dates to all ve
 ### 3.0.4
 
 Just updated README.md to be more detailed and to have all the features.
+
+### 3.0.5
+
+Optimization updates after a year of not maintaining it.
 
 ---
 
