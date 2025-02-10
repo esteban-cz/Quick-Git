@@ -2,7 +2,7 @@
 <table>
 <tbody>
 <td align="center">
-<img width="0" height="0"><br>
+<img src="" width="0" height="0"><br>
 <sub>
   
   [![MIT License](https://img.shields.io/badge/License-MIT-red.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)&nbsp;&nbsp;&nbsp;
@@ -11,7 +11,7 @@
   ![GitHub last commit](https://img.shields.io/github/last-commit/esteban-cz/Quick-Git?style=for-the-badge)
   
 </sub><br>
-<img width="0" height="0">
+<img src="" width="0" height="0">
 </td>
 </tbody>
 </table>

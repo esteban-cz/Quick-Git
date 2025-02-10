@@ -38,3 +38,7 @@
 - Just updated README.md to be more detailed and to have all the features.
 ---
 ---
+# [4322588] (10/2/2025) Version 3.0.5 update:
+- Optimization update, I added some minor fixes and overall better optimization.
+---
+---
