@@ -9,7 +9,9 @@ function executeGitCommand(command: string) {
   if (!terminal) {
     terminal = vscode.window.createTerminal("Quick-Git");
   }
+
   // terminal.show();
+  
   terminal.sendText(command);
 }
 
