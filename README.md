@@ -1,4 +1,4 @@
-<div align="center">
+<!-- <div align="center">
 <table>
 <tbody>
 <td align="center">
@@ -17,7 +17,7 @@
 </table>
 </div>
 
-<br>
+<br> -->
 
 # Features
 
@@ -77,6 +77,11 @@ Just updated README.md to be more detailed and to have all the features.
 ### 3.0.5
 
 Optimization updates after a year of not maintaining it.
+
+
+### 3.0.6
+
+Bug fixes after the update :)
 
 ---
 
