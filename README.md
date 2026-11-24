@@ -2,16 +2,14 @@
 <table>
 <tbody>
 <td align="center">
-<img src="" width="0" height="0"><br>
+<br>
 <sub>
   
   [![MIT License](https://img.shields.io/badge/License-MIT-red.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)&nbsp;&nbsp;&nbsp;
-  ![Maintenance](https://img.shields.io/maintenance/yes/2025?style=for-the-badge)&nbsp;&nbsp;&nbsp;
   ![Extension Version](https://img.shields.io/github/package-json/v/esteban-cz/Quick-Git/master?style=for-the-badge&label=Version)&nbsp;&nbsp;&nbsp;
   ![GitHub last commit](https://img.shields.io/github/last-commit/esteban-cz/Quick-Git?style=for-the-badge)
   
 </sub><br>
-<img src="" width="0" height="0">
 </td>
 </tbody>
 </table>
@@ -19,20 +17,31 @@
 
 <br>
 
-# Features
+# Quick Git
 
-Quick Git will save you time when you're in hurry and need to quickly commit and push to git. Just press one button and done. It will automatically commit and push to git with the commit message "New" (you can change the default commit message in extension settings) or you can use custom commit message and each time you commit it will ask you to write commit message.
-### All features:
-  - Git Clone
-  - Git Pull
-  - Git Push
-  - Git Commit
-  - Commit and Push
+Clone, pull, push, and commit using VS Code’s built-in Git integration. Open **Quick Git** in the status bar or search for **Quick Git** in the Command Palette. **Pull** and **Commit & Push** also appear in the editor toolbar when a repository is open.
 
----
----
+When multiple repositories are open, choose the target by its branch and path. Quick Git lists the active editor’s repository first. The **Clone Repository** shortcut is available from an empty window.
+
+**Commit & Push** waits for Git to create a commit before pushing. If the push fails, Quick Git reports that the commit exists locally and offers to open Git Output. [VS Code source control](https://code.visualstudio.com/docs/sourcecontrol/overview)
+
+## Settings
+
+| Setting | Values |
+| --- | --- |
+| `quickGit.commitScope` | `all` stages and commits all changes in the selected repository. Use `staged` to commit only changes you staged in Source Control. |
+| `quickGit.commitMessageOption` | `Default` uses the saved message. `Custom` prompts for a message each time. |
+| `quickGit.defaultCommitMessage` | The saved message, initially `New`. |
+
+Quick Git requires VS Code 1.96 or later, the built-in Git extension, and a Git installation.
 
 ## Release Notes
+
+### 3.1.0
+
+- Added repository selection, staged-only commits, and Command Palette entries for all Git actions.
+- Uses VS Code’s Git integration for cloning and repository operations.
+- Fixed the commit message settings and reports operation results after Git finishes.
 
 ### 1.0.0
 

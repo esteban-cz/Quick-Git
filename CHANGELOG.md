@@ -1,3 +1,13 @@
+# Changelog
+
+## 3.1.0 - 11/24/2026
+
+- Routed Clone, Pull, Push, Commit, and Commit & Push through VS Code’s Git integration.
+- Added repository selection in workspaces with more than one Git repository.
+- Added staged-only commits and restored saved commit message settings.
+- Made Commit & Push wait for a new commit and report push failures separately.
+- Updated the build and packaging tools and reduced the Marketplace icon size.
+
 # [4b3e5c0] (9/11/2023) Version 1.0.0 update:
 - Initial release of "quick-git"
 ---

@@ -1,8 +1,8 @@
 {
   "name": "quick-git",
   "displayName": "Quick Git",
-  "description": "Quick Git will quickly add, commit and push your project to git with simple commit message that you can easily customize.",
-  "version": "3.0.6",
+  "description": "Clone, pull, push, and commit from the VS Code status bar and Command Palette, with repository selection and staged-only commits.",
+  "version": "3.1.0",
   "publisher": "esty",
   "engines": {
     "vscode": "^1.96.0"
@@ -11,7 +11,7 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "icon": "icon/Quick-Git-logo.png",
@@ -24,23 +24,41 @@
       "editor/title": [
         {
           "command": "quickGit.Pull",
-          "group": "navigation"
+          "group": "navigation",
+          "when": "gitOpenRepositoryCount > 0"
         },
         {
           "command": "quickGit.Commit&Push",
-          "group": "navigation"
+          "group": "navigation",
+          "when": "gitOpenRepositoryCount > 0"
         }
       ]
     },
     "commands": [
       {
+        "command": "quickGit.showGitMenu",
+        "title": "Quick Git: Open Actions"
+      },
+      {
+        "command": "quickGit.Clone",
+        "title": "Quick Git: Clone Repository"
+      },
+      {
         "command": "quickGit.Pull",
-        "title": "Git: Pull",
+        "title": "Quick Git: Pull",
         "icon": "$(git-fetch)"
       },
       {
+        "command": "quickGit.Push",
+        "title": "Quick Git: Push"
+      },
+      {
+        "command": "quickGit.Commit",
+        "title": "Quick Git: Commit"
+      },
+      {
         "command": "quickGit.Commit&Push",
-        "title": "Git: Commit & Push",
+        "title": "Quick Git: Commit & Push",
         "icon": "$(git-commit)"
       }
     ],
@@ -55,34 +73,57 @@
             "Custom"
           ],
           "default": "Default",
-          "description": "Choose between Default or Custom commit message (if set to Default, the commit message will be your Default Commit Message that you set, if set to custom, you will be prompted each time you commit to write a message to commit with.)"
+          "description": "Use the saved commit message or prompt for a message each time.",
+          "scope": "resource"
         },
         "quickGit.defaultCommitMessage": {
           "type": "string",
           "default": "New",
-          "description": "Default commit message"
+          "description": "Commit message used when the message option is Default.",
+          "scope": "resource"
+        },
+        "quickGit.commitScope": {
+          "type": "string",
+          "enum": [
+            "all",
+            "staged"
+          ],
+          "enumDescriptions": [
+            "Stage and commit all changes in the selected repository.",
+            "Commit only changes already staged in Source Control."
+          ],
+          "default": "all",
+          "description": "Choose which changes Quick Git commits.",
+          "scope": "resource"
         }
       }
     }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
+    "vscode:package": "vsce package",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
+    "lint": "eslint src",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node --test test/*.test.cjs"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.3",
-    "@types/node": "18.x",
-    "@types/vscode": "^1.96.0",
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
-    "@vscode/test-electron": "^2.3.6",
-    "eslint": "^8.52.0",
-    "glob": "^10.3.10",
-    "mocha": "^10.2.0",
-    "typescript": "^5.2.2"
+    "@types/vscode": "1.96.0",
+    "@typescript-eslint/parser": "8.74.0",
+    "@vscode/vsce": "4.0.0",
+    "eslint": "10.15.0",
+    "typescript": "6.0.3"
+  },
+  "license": "MIT",
+  "extensionDependencies": [
+    "vscode.git"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": false,
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Quick Git works with repositories opened by VS Code\u2019s built-in Git extension."
+    }
   }
 }

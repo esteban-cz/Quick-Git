@@ -5,6 +5,9 @@ src/**
 .yarnrc
 vsc-extension-quickstart.md
 **/tsconfig.json
-**/.eslintrc.json
 **/*.map
 **/*.ts
+node_modules/**
+test/**
+eslint.config.mjs
+settings.json
